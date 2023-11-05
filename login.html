@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinewave studios</title>
+
+    <style>
+
+        body {
+            background-image: url("backgorund.jpg"); /* Ruta de la imagen de fondo */
+            background-color: rgba(0,0,0);
+            background-size: cover; /* Ajusta la imagen al tamaño del viewport */
+            background-attachment: fixed; /* Fija la imagen en el fondo */
+            background-position: center; /* Centra la imagen en la página */
+        }
+
+        body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con una opacidad del 50% */
+        z-index: -1; /* Coloca la capa de superposición detrás del contenido */
+        }
+
+        .container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        }
+
+        .logo {
+            position: absolute; /* Establece la posición absoluta en el div interno */
+            top: 0; /* Coloca el div en la parte superior */
+            left: 0; /* Coloca el div en la izquierda */
+            padding: 10px;
+        }
+
+        .arco-h3 {
+        font-size: 24px ; /* Tamaño de fuente */
+        font-weight: bold;
+        display: inline-block; /* Permite la transformación */
+        transform: perspective(-100px) rotateX(-25deg); /* Rota el elemento en un arco hacia arriba en 2D */
+        transform-origin: 30% 80%; /* Establece el punto de origen en la parte inferior del elemento */
+        padding: 10px; /* Espaciado interior para separar el texto del borde */
+        color: purple; /* Color del texto */
+
+        }
+
+        .box{
+        width:300px; /* Ajusta el ancho según tus necesidades */
+        background-color:rgba(0, 0, 0, 0.9);
+        margin-top:10%; /* Centra horizontalmente usando margen automático */
+        padding: 50px;
+        border-radius: 10px;
+        }
+
+        .form-title{
+            padding: auto;
+            font-size: large;
+            font-weight: bold;
+            color: white;
+            margin: 10px;
+        }       
+
+        .form{
+            text-align: center;
+            display: flex;
+            margin:0 auto;
+            width: 200;
+        }   
+
+        form input{
+            height: 45px;
+            width: 300px;
+            margin-bottom: 25px;
+            background-color: rgb(63, 63, 63);
+            color: lightslategray;
+            border-radius: 10px;
+            border: 0;
+        }
+
+        form input::placeholder{
+            text-indent: 12px;
+        }
+        form button{
+            background-color: purple;
+            border: none;
+            height: 50px;
+            width: 300px;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+
+        .options{
+            display: flex;
+        }
+
+        .check{
+            color: white;
+            font-weight:lighter;
+            font-size: small;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-right: auto;
+
+        }
+    
+
+        .help a{
+            text-decoration: none;
+            color: white;
+        }
+        
+        .or{
+            left:50%;
+            top: 0;
+            position: relative;
+            color: white;
+        }
+
+        .sign-up{
+            background-color: purple;
+            border: none;
+            height: 50px;
+            width: 300px;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h3 class="arco-h3">CINEWAVE STUDIOS</h3>
+        </div>
+        <div class="box">
+            <div class="form-title">
+                <h3>Sign In</h3>
+            </div>
+            <div class="form"> 
+                <form action="">
+                    <input type="email" name="email" id="email" placeholder="Enter your email" >
+                    <input type="password" name="password" id="password" placeholder="Password" > <br>
+                    <button class="sign-in">Sign In</button>
+                </form>
+            </div>
+            <div class="options">
+                <div class="check">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <div class="help">
+                    <a href="#">Need help?</a>
+                </div>
+            </div>
+            <div class="or">
+                <p>or</p>
+            </div>
+            <div class="register">
+                <button class="sign-up">Sign Up</button>
+            </div>
+            <div>
+                <p>Esta pagina esta protegida por servicios iteso</p>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <div class="footer">
+        <a href="">1</a>
+        <a href="">2</a>
+        <a href="">3</a>
+        <a href="">4</a>
+        <a href="">5</a>
+        <a href="">6</a>
+        <a href="">7</a>
+        <a href="">8</a>
+    </div>
+</footer>
+</html>
