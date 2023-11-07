@@ -1,0 +1,88 @@
+body{
+    background-color: rgba(0, 0, 0);
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column; /* Cambia la dirección de flexión a columna */
+
+}
+
+.top{
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.user{
+    margin: 20px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 80px;
+
+}
+.user-pic{
+    border-radius: 10px;
+    height:50px;
+    width:50px;
+
+}
+
+.username{
+    margin: 5px;
+    color: white;
+    font-size: 10px;
+}
+
+.options{
+    width: 100%;
+    display: flex;
+    justify-content:space-around; /* Distribuye los elementos a lo largo del espacio disponible */
+    text-align: center;
+}
+.options a{
+    margin:20px;
+    text-decoration: none;
+    color: white;
+}
+
+.main{
+    width: 100%;
+    display: flex;
+    justify-content:space-around; /* Distribuye los elementos a lo largo del espacio disponible */
+    text-align: center;
+}
+
+.profiles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+}
+
+.profile-n {
+    text-align: center;
+}
+
+.profile-n img{
+    width: 190px;
+    margin: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.profile-n img:hover{
+    width: 250px;
+    height: 250px;
+    transition: 100ms;
+    
+}
+.profile-n p{
+    margin: 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
