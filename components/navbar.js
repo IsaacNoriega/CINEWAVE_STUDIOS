@@ -31,6 +31,12 @@ function MiComponente(elementoPadre) {
                 <a href="#">My List</a>
             </li>
         </ul>
+        
+
+        <div class="search-dropdown">
+            <input type="text" placeholder="Search for a show, movie, genre, e.t.c."/>
+        </div>
+
     `;
     this.elementoPadre.appendChild(this.elementoHijo);
   }
