@@ -69,6 +69,11 @@ body{
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+    
+}
+
+.add-profile-link img{
+    border: 2px solid white;
 }
 
 .profile-n {
