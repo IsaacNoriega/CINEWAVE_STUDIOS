@@ -8,25 +8,25 @@ let hideControlsTimeout;
             const detallePelicula = `
                 <div class="movie-container" onmousemove="mostrarControles()">
 
-                    <video src="./movies/the.last.of.us.s01e03.1080p.web.h264-cakes.mp4" autoplay></video>
+                    <video src="/movies/the.last.of.us.s01e03.1080p.web.h264-cakes.mp4" autoplay></video>
                     <div class="controls" style="display: none;">
                         <button class="goBackdBtn" onclick="back()">
-                            <img src="./assets/goBack.svg">
+                            <img src="/assets/goBack.svg">
                         </button>
                         <ul>
                             <li>
                                 <button onclick="retroceder()">
-                                    <img src="./assets/back.svg">
+                                    <img src="/assets/back.svg">
                                 </button>
                             </li>
                             <li>
                                 <button id="btnPoP" onclick="pausar()">
-                                   <img src="./assets/pause.svg">
+                                   <img src="/assets/pause.svg">
                                 </button>
                             </li>
                             <li>
                                 <button onclick="avanzar()">
-                                    <img src="./assets/next.svg">
+                                    <img src="/assets/next.svg">
                                 </button>
                             </li>
                         </ul>
@@ -42,7 +42,7 @@ let hideControlsTimeout;
                                     <input class="soundInput" name="soundInput" type="range" min="0" max="10" value="10" step="1" oninput="ajustarVolumen(this)">
                                 </div>
                                 <button id="soundBtn" onclick="alternarMuted()">
-                                    <img src="./assets/sound.svg">
+                                    <img src="/assets/sound.svg">
                                 </button>
 
                             </div>
@@ -114,12 +114,12 @@ let hideControlsTimeout;
             if (!video.paused) {
                 video.pause();
                 play=false;
-                btn.innerHTML='<img src="../assets/play.svg">'
+                btn.innerHTML='<img src="/assets/play.svg">'
             } else {
                 play=true;
                 video.play();
                 mostrarControles();
-                btn.innerHTML='<img src="../assets/pause.svg">'
+                btn.innerHTML='<img src="/assets/pause.svg">'
             }
         }
 

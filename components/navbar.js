@@ -2,13 +2,13 @@ function MiComponente(elementoPadre) {
   this.elementoPadre = elementoPadre;
   this.elementoHijo = document.createElement('div');
   const username = "usuario 1";
-  const userImg = "../assets/backgorund.jpg";
+  const userImg = "/assets/backgorund.jpg";
   const searchMovies = {
       "kill Bill": "https://th.bing.com/th/id/OIP.QRoYUipqebs6BA7urEIoUgHaLH?pid=ImgDet&rs=1",
       "Coraline": "https://th.bing.com/th/id/OIP.X_zYmfuYIhLPz3nHkr9wSwHaJa?pid=ImgDet&rs=1",
       "Shrek": "https://image.tmdb.org/t/p/original/WJ9WoEPmD5gWs2l3tIyPKzEI6K.jpg"
   };
-  const searchIcon = ["../assets/ant-design_search-outlined.svg", "../assets/close.svg"];
+  const searchIcon = ["/assets/ant-design_search-outlined.svg", "/assets/close.svg"];
   let searchIconIndex = 0; // Índice para rastrear el ícono actual
 
   // Convierte el objeto en un arreglo de pares clave-valor

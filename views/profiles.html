@@ -4,68 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CINEWAVE STUDIOS</title>
-    <link rel="stylesheet" href="./styles/config.css">
-    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="/styles/config.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
 </head>
 <body>
     <div class="container">
+        <!-- <div class="top">
+            <div class="user">
+                <img  class="user-pic"   src="assets/user1.jpeg" alt="user">
+                <h4 class="username">Usuario 1</h4>
+            </div>
+            <div class="options">
+                <button>TV shows</button>
+                <button>Movies</button>
+                <button>My List</button>
+            </div>
+        </div> -->
         <nav id="main-nav"></nav>
 
         <div class="main">
             <div class="profiles">
                 <div class="profile-n" >
                     <button onclick="goHome()">
-                        <img src="assets/user1.jpeg" alt="">
+                        <img src="/assets/user1.jpeg" alt="">
                         <p>User1</p>
                     </button>
                 </div>
                 <div class="profile-n">
                     <button onclick="goHome()">
-                        <img src="assets/user1.jpeg" alt="">
+                        <img src="/assets/user1.jpeg" alt="">
                         <p>User2</p>
                     </button>
                 </div>
                 <div class="profile-n">
                     <button onclick="goHome()">
-                        <img src="assets/user1.jpeg" alt="">
+                        <img src="/assets/user1.jpeg" alt="">
                         <p>User3</p>
                     </button>
                 </div>
                 <div class="profile-n">
                     <button onclick="goHome()">
-                        <img src="assets/user1.jpeg" alt="">
+                        <img src="/assets/user1.jpeg" alt="">
                         <p>User4</p>
                     </button>
                 </div>
                 <div class="profile-n ">
-                    <button class="add-profile-link">
-                        <img src="assets/add-profile.svg" alt="">
+                    <button class="add-profile-link" onclick="addProfile()">
+                        <img src="/assets/add-profile.svg" alt="">
                         <p>add profile</p>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="settings">
+        <!-- <div class="settings">
             <div class="button-options">
-                <button>App Settings</button>
+                <button href='#'">App Settings</button>
             </div>
             <div class="button-options">
-                <button>Account</button>
-            </div>
-            <div class="button-options">
-                <p>Control Parental</p>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
+                <button href='#'">Account</button>
             </div>
             <div class="last-button">
-                <button>Sign Out</button>
+                <button href='#'">Sign Out</button>
             </div>
-        </div>
-
+        </div> -->
     </div>
 
-    <script src="./components/navbar.js"></script>
+    <script src="/components/navbar.js"></script>
+    <script src="links.js"></script>
 </body>
 </html>
