@@ -13,53 +13,8 @@ body {
     flex-direction: column;
 }
 
-.top {
-    display: flex;
-    width: 100%;
-    height: auto;
-    padding-bottom: 10px;
-}
-
-.user {
-    margin: 20px;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    width: 80px;
-}
-
-.user-pic {
-    border-radius: 10px;
-    height: 50px;
-    width: 50px;
-}
-
-.username {
-    margin: 5px;
-    color: white;
-    font-size: 10px;
-}
-
-.options {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-}
-
-.options button {
-    margin: 20px;
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-}
-
 .main {
-    margin-top: 100px;
+    margin-top: 200px;
     width: 100%;
     height: 100%;
     display: flex;
