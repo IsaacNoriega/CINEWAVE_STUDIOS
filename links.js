@@ -37,3 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function goHome(){
      window.location.href = 'home.html';
 }
+
+function addProfile(){
+    window.location.href = 'createProfile.html'
+}
