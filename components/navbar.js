@@ -48,7 +48,7 @@ function MiComponente(elementoPadre) {
   this.elementoHijo.innerHTML = `
       <ul class="nav-ul">
           <li class="user-li">
-              <a href="#">
+              <a href="profiles.html">
                   <img class="img-user" src="${userImg}">
                   ${username}
               </a>
