@@ -1,0 +1,35 @@
+[
+    {
+      "title": "The Secret in Their Eyes",
+      "director": "Juan José Campanella",
+      "year": 2009,
+      "genre": ["Drama", "Crime", "Mystery"],
+      "imageURL": "https://th.bing.com/th/id/R.c913b79e629cb73ca3c9a0532574f714?rik=fmn9qRo%2biy5uvg&pid=ImgRaw&r=0",
+      "video":"https://firebasestorage.googleapis.com/v0/b/cinewave-8a329.appspot.com/o/TheSecretInTheirEyes.mp4?alt=media&token=107f6b35-1c0b-47cd-af5c-cfcc16db9b40"
+    },
+    {
+      "title": "Inception",
+      "director": "Christopher Nolan",
+      "year": 2010,
+      "genre": ["Action", "Adventure", "Science Fiction"],
+      "imageURL": "https://th.bing.com/th/id/R.dd9827fbb0199cd20694739d54c346d8?rik=5JsQjhudqNqO9w&pid=ImgRaw&r=0",
+      "video":"https://firebasestorage.googleapis.com/v0/b/cinewave-8a329.appspot.com/o/inception.mp4?alt=media&token=eac4e184-e7bb-40bf-b5bc-410cbb8b01bb"
+    },
+    {
+      "title": "La La Land",
+      "director": "Damien Chazelle",
+      "year": 2016,
+      "genre": ["Musical", "Drama", "Romance"],
+      "imageURL": "https://th.bing.com/th/id/R.61e50b048f87ef13d0718c50e5637e63?rik=B5plTZNxOYCPiA&pid=ImgRaw&r=0",
+      "video":"https://firebasestorage.googleapis.com/v0/b/cinewave-8a329.appspot.com/o/lalaland.mp4?alt=media&token=64af7530-bd19-4de6-b942-6d2d1a70a969"
+    },
+    {
+      "title": "The Last of Us",
+      "director": "Kantemir Balagov",
+      "year": 2023,
+      "genre": ["Acción", "Aventura", "Drama"],
+      "imageURL": "https://th.bing.com/th/id/R.08a8959cb71456abda26ff89a2812f26?rik=lDHKLqMy%2fMWY1Q&pid=ImgRaw&r=0",
+      "video": "https://firebasestorage.googleapis.com/v0/b/cinewave-8a329.appspot.com/o/the.last.of.us.s01e03.1080p.web.h264-cakes.mkv?alt=media&token=331f9928-6cf9-44ab-b7d1-6f95a80c8531"
+    }
+  ]
+  
