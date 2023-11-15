@@ -3,8 +3,20 @@ let play = true;
 
 function mostrarDetallePelicula(movie) {
     let movieTitle = movie.title;
-    console.log(movie);
 
+    let watching=readMyWatching();
+    let oldProgress=0;
+    watching.forEach(media => {
+        let m=media.media
+        if(movieTitle==m.title){
+            oldProgress=media.progress;
+        }
+    });
+
+
+    
+    console.log(movie);
+    saveProgressMedia(movie,0)
     const detallePelicula = `
         <div class="movie-container" onmousemove="mostrarControles()">
 
@@ -33,7 +45,7 @@ function mostrarDetallePelicula(movie) {
                 <div class="bar">
                     <h2 id="movieTitle" class="movie-title">${movieTitle}</h2>
                     <div class="progress">
-                        <input type="range" min="0" value="0" step="0.5" oninput="actualizarProgreso(this)">
+                        <input type="range" min="0" value="0" step="0.5">
                     </div>
                     <div class="info">
                         <p id="progressVideo"></p>
@@ -67,17 +79,27 @@ function mostrarDetallePelicula(movie) {
     setTimeout(() => {
         const video = document.querySelector('.movie-container video');
         const progresoElemento = document.getElementById('progressVideo');
-
+        video.currentTime = oldProgress;
+        
         video.addEventListener('timeupdate', () => {
-            const duracion = Math.floor(video.duration);
+            
             const tiempoActual = Math.floor(video.currentTime);
-
+            const duracion = Math.floor(video.duration);
             const minutosD = Math.floor(duracion / 60);
             const segundosD = duracion % 60;
             const minutosT = Math.floor(tiempoActual / 60);
             const segundosT = tiempoActual % 60;
 
             progresoElemento.textContent = `${minutosT}:${segundosT} / ${minutosD}:${segundosD}`;
+            console.log(movie)
+            console.log(video.currentTime)
+            saveProgressMedia(movie,video.currentTime)
+
+
+            if((minutosT==minutosT)&&(segundosT==segundosD)){
+                deleteFromWatching(movie)
+            }
+
         });
 
     }, 200);
@@ -149,10 +171,12 @@ function mostrarControles() {
 
 function actualizarProgreso(elemento) {
     const video = document.querySelector('.movie-container video');
+    console.log("tiempoActual")
     if (video) {
         const tiempoActual = video.currentTime;
         const duracion = video.duration;
         elemento.value = (100 / duracion) * tiempoActual;
+        
     }
 }
 
@@ -163,6 +187,9 @@ setInterval(() => {
         const tiempoActual = video.currentTime;
         const duracion = video.duration;
         barraProgreso.value = (100 / duracion) * tiempoActual;
+        
+
+        
     }
 }, 1000);
 

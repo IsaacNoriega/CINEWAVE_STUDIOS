@@ -22,6 +22,15 @@ function readMyList() {
     return new MediaContent(myList._mediaProxies);
 }
 
+function readMyWatching() {
+    let Watching = JSON.parse(localStorage.getItem('Watching'));
+    if (Watching === undefined) {
+        Watching = [];
+    }
+    return Watching;
+    //return new MediaContent(myList._mediaProxies);
+}
+
 
 function writeMyList(media) {
     sessionStorage.setItem('myList', JSON.stringify(media));
@@ -55,6 +64,52 @@ function deleteFromMyList(media) {
     renderMyList();
 }
 
+
+function deleteFromWatching(media) {
+    const watching = readMyWatching();
+
+    for (let i = 0; i < watching.length; i++) {
+        if (watching[i].media.title === media.title) {
+            console.log("Pelicula encontrada");
+            watching.splice(i, 1); // Remove the movie at index i
+            localStorage.setItem("Watching", JSON.stringify(watching));
+            
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+            return;
+        }
+    }
+
+    console.log('Movie not found in the watching list');
+}
+
+
+
+
+
+
+
+
+
+function saveProgressMedia(media, progress) {
+    // Get the current "Watching" array from localStorage
+    let watchingArray = JSON.parse(localStorage.getItem("Watching")) || [];
+
+    // Check if the media is already in the array based on its title
+    const existingMediaIndex = watchingArray.findIndex(item => item.media.title === media.title);
+
+    if (existingMediaIndex !== -1) {
+        // If the media is already in the array, update its progress
+        watchingArray[existingMediaIndex].progress = progress;
+    } else {
+        // If the media is not in the array, add it along with the progress
+        watchingArray.push({ media, progress });
+    }
+
+    // Save the updated array back to localStorage
+    localStorage.setItem("Watching", JSON.stringify(watchingArray));
+}
 
 
 

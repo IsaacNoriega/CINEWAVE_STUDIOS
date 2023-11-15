@@ -2,6 +2,7 @@
 
 const movieContainer = document.getElementById('movieList');
 const myListContainer = document.getElementById('myListContainer');
+const continueWatichingListContainer= document.getElementById('continue-watching-list');
 
 async function movieToHtml(movie) {
     let newMovie=JSON.stringify(movie).replace(/\"/g,"&quot;")
@@ -44,6 +45,32 @@ async function mediaMyListToHtml(movie) {
 }
 
 
+async function mediaWatchingListToHtml(movie, progress) {
+    let newMovie = JSON.stringify(movie).replace(/\"/g, "&quot;");
+    
+    // Calculate the width of the progress bar based on the progress value
+    const progressBarWidth = `${progress}%`;
+
+    return `
+        <div class="movie-card">
+            <div onclick="mostrarDetallePelicula(${newMovie})" class="img-card">
+                <img class="card-img-top" src="${movie.img}" alt="${movie.title}">
+
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">${movie.title}</h4>
+                <p class="card-text">${movie.director}</p>
+                <p><span>${movie.year}</span></p>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: ${progressBarWidth}" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    `;
+}
+
+
+
 async function moviesToHtml() {
     const movies = await loadMovies(moviesURL);
 
@@ -81,7 +108,25 @@ function renderMyList() {
     mediasToHtml().then((movieHtmlArray) => {
         myListContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
     });
+}
 
+
+
+function watchingToHtml() {
+    let medias=readMyWatching();
+    console.log(medias)
+    const mediaHtmlArray = medias.map(async (media) => {
+        const html = await mediaWatchingListToHtml(media.media,media.progress);
+        return html;
+    });
+    return Promise.all(mediaHtmlArray);
+}
+
+function renderContinueWatichingList(){
+    watchingToHtml().then((movieHtmlArray) => {
+        console.log(movieHtmlArray)
+        continueWatichingListContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
+    });
 }
 
 
@@ -101,4 +146,5 @@ function preloadStream() {
 document.addEventListener('DOMContentLoaded', function() {
     preloadStream();
     renderMyList();
+    renderContinueWatichingList();
 });

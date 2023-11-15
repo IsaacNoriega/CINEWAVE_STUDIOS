@@ -100,7 +100,7 @@ z-index: -1; /* Coloca la capa de superposición detrás del contenido */
     width: 20%;
     border-radius: 2rem;
 }
-.list-movies{
+.list-movies .row{
     
     display: flex;
     gap: 100px;
