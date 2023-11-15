@@ -110,13 +110,9 @@ z-index: -1; /* Coloca la capa de superposición detrás del contenido */
     padding: 100px;
     color: white;
 }
-.my-list-movies{
+.my-list-movies .row{
     display: flex;
     gap: 20px;
-}
-.my-list-movies img{
-    width: 150px;
-    height: 200px;
 }
 .movies{
     color: white;

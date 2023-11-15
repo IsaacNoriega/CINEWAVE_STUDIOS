@@ -7,20 +7,59 @@ const usersURL = apiURL + 'users/';
 
 
 
-function initMovies() {
-    console.log("peliculas")
+function initMyList() {
+    if(sessionStorage.getItem('myList') == null) {
+        let media = new MediaContent();
+        writeMyList(media);
+    }
 }
 
 function readMyList() {
     let myList = JSON.parse(sessionStorage.getItem('myList'));
-    if(myList._productProxies === undefined) {cart._productProxies = []}
-    return new ShoppingCart(cart._products, cart._productProxies);
+    if (myList === undefined) {
+        myList = [];
+    }
+    return new MediaContent(myList._mediaProxies);
 }
 
 
-function writeMyList(movie) {
-    sessionStorage.setItem('myList', JSON.stringify(movie));
+function writeMyList(media) {
+    sessionStorage.setItem('myList', JSON.stringify(media));
 }
 
 
-initMovies();
+function addToMyList(media) {
+    const myList = readMyList();
+
+    // Verificar si el título del nuevo elemento ya existe en la lista
+    let isDuplicate = false;
+    for (const item of myList._mediaProxies) {
+        if (item.title === media.title) {
+            isDuplicate = true;
+            break;
+        }
+    }
+
+    if (!isDuplicate) {
+        myList._mediaProxies.push(media);
+        writeMyList(myList);
+    }
+    renderMyList();
+}
+
+function deleteFromMyList(media) {
+    const myList = readMyList();
+    const updatedList = myList._mediaProxies.filter(m => m.title !== media.title);
+    myList._mediaProxies = updatedList;
+    writeMyList(myList);
+    renderMyList();
+}
+
+
+
+
+
+
+
+
+initMyList();
