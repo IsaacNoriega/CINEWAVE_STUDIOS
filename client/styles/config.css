@@ -14,15 +14,16 @@ body {
 }
 
 .main {
-    margin-top: 200px;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: space-around;
     text-align: center;
+    overflow: hidden;
 }
 
 .profiles {
+    margin: auto;
     height: 300px;
     display: flex;
     justify-content: space-between;
@@ -36,6 +37,8 @@ body {
 
 .profile-n {
     text-align: center;
+    transition: 0.2s;
+    opacity: 70%;
 }
 
 .profile-n img {
@@ -43,12 +46,12 @@ body {
     height: 190px;
     margin: 15px;
     border-radius: 10px;
-    transition: width 0.15s ease, height 0.15s ease;
+    
 }
 
-.profile-n img:hover {
-    width: 210px;
-    height: 210px;
+.profile-n:hover {
+    transform: scale(1.3);
+    opacity: 100%;
 }
 
 .profile-n button {

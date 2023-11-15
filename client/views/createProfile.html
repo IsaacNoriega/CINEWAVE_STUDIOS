@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/navbar.css">
-    <link rel="stylesheet" href="/styles/createProfile.css">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/createProfile.css">
 
     <title>CINEWAVE STUDIO</title>
 </head>
@@ -15,8 +15,12 @@
             <div class="user">
                 <input type="text" id="username" placeholder="Username">
             </div>
+
             <div class="imageProfile">
-                <button class="image"><img src="/assets/add-profile.svg" alt=""></button>
+                <label for="image" class="image">
+                    <img id="userImg" src="../assets/add-profile.svg" alt="">
+                    <input onchange="newUserImg(this)" style="display: none;" type="file" id="image"></input>
+                </label>
             </div>
             <div class="button-options">
                 <label class="switch">
@@ -36,6 +40,26 @@
 
 
     </div>
+
+    <script>
+         function newUserImg(input) {
+            const userImg = document.getElementById("userImg");
+
+            // Check if a file is selected
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Update the src attribute of the img element with the selected image
+                    userImg.src = e.target.result;
+                };
+
+                // Read the selected image file as a data URL
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
     <script src="/components/navbar.js"></script>
 </body>
 </html>

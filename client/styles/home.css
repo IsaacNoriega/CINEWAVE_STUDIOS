@@ -116,6 +116,8 @@ z-index: -1; /* Coloca la capa de superposición detrás del contenido */
 }
 .movies{
     color: white;
+    padding: 100px;
+    
 }
 
 .movies .row{

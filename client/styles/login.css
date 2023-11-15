@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url("/assets/backgorund.jpg"); /* Ruta de la imagen de fondo */
+    background-image: url("../assets/backgorund.jpg"); /* Ruta de la imagen de fondo */
     background-color: rgba(0,0,0);
     background-size: cover; /* Ajusta la imagen al tamaño del viewport */
     background-attachment: fixed; /* Fija la imagen en el fondo */

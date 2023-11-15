@@ -6,12 +6,14 @@ function mostrarDetallePelicula(movie) {
 
     let watching=readMyWatching();
     let oldProgress=0;
-    watching.forEach(media => {
-        let m=media.media
-        if(movieTitle==m.title){
-            oldProgress=media.progress;
-        }
-    });
+    if (watching!=null){
+        watching.forEach(media => {
+            let m=media.media
+            if(movieTitle==m.title){
+                oldProgress=media.progress;
+            }
+        });
+    }
 
 
     
@@ -96,7 +98,7 @@ function mostrarDetallePelicula(movie) {
             saveProgressMedia(movie,video.currentTime)
 
 
-            if((minutosT==minutosT)&&(segundosT==segundosD)){
+            if((minutosT==minutosD)&&(segundosT==segundosD)){
                 deleteFromWatching(movie)
             }
 

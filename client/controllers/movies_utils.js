@@ -6,7 +6,6 @@ const continueWatichingListContainer= document.getElementById('continue-watching
 
 async function movieToHtml(movie) {
     let newMovie=JSON.stringify(movie).replace(/\"/g,"&quot;")
-    console.log(movie)
     return `
     <div class="movie-card">
         <div onclick="mostrarDetallePelicula(${newMovie})" class="img-card">
@@ -26,7 +25,6 @@ async function movieToHtml(movie) {
 
 async function mediaMyListToHtml(movie) {
     let newMovie=JSON.stringify(movie).replace(/\"/g,"&quot;")
-    console.log(movie)
     return `
     <div class="movie-card">
         <div onclick="mostrarDetallePelicula(${newMovie})" class="img-card">
@@ -82,9 +80,39 @@ async function moviesToHtml() {
     return Promise.all(movieHtmlArray);
 }
 
+
+async function moviesByGenreToHtml(genre) {
+    const movies = await loadMovies(moviesURL);
+    const lowerCaseGenre = genre.toLowerCase();
+
+    const movieHtmlArray = [];
+
+    for (const movie of movies) {
+        // Check if the lowercase genre is included in the lowercase movie genres
+        if (movie.genre.map(g => g.toLowerCase()).includes(lowerCaseGenre)) {
+            const html = await movieToHtml(movie);
+            movieHtmlArray.push(html);
+        }
+    }
+
+    return Promise.all(movieHtmlArray);
+}
+
+
+
+
+
+
 function renderMovies() {
     moviesToHtml().then((movieHtmlArray) => {
         movieContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
+    });
+}
+
+function renderByGenreMedia(genre) {
+    
+    moviesByGenreToHtml(genre).then((movieHtmlArray) => {
+        document.getElementById(genre+"MovieList").innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
     });
 }
 
@@ -104,7 +132,6 @@ async function mediasToHtml() {
 
 function renderMyList() {
     let medias=readMyList()._mediaProxies;
-    console.log(medias)
     mediasToHtml().then((movieHtmlArray) => {
         myListContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
     });
@@ -114,7 +141,6 @@ function renderMyList() {
 
 function watchingToHtml() {
     let medias=readMyWatching();
-    console.log(medias)
     const mediaHtmlArray = medias.map(async (media) => {
         const html = await mediaWatchingListToHtml(media.media,media.progress);
         return html;
@@ -124,19 +150,13 @@ function watchingToHtml() {
 
 function renderContinueWatichingList(){
     watchingToHtml().then((movieHtmlArray) => {
-        console.log(movieHtmlArray)
+
         continueWatichingListContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
     });
 }
 
 
 
-/*
-function renderByGenreMovies() {
-    moviesToHtml().then((movieHtmlArray) => {
-        movieContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
-    });
-}*/
 
 
 function preloadStream() {
@@ -147,4 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
     preloadStream();
     renderMyList();
     renderContinueWatichingList();
+    renderByGenreMedia("action");
+    renderByGenreMedia("romance");
+    renderByGenreMedia("drama");
 });
