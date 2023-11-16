@@ -18,20 +18,20 @@ function manejarEnvioFormulario(formulario) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Manejar el evento submit del formulario
-    const formulario = document.querySelector('form');
-    formulario.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evitar que el formulario se envíe
+// document.addEventListener('DOMContentLoaded', function() {
+//     // Manejar el evento submit del formulario
+//     const formulario = document.querySelector('form');
+//     formulario.addEventListener('submit', function(event) {
+//         event.preventDefault(); // Evitar que el formulario se envíe
 
-        // Llamar a la función de manejo de envío del formulario
-        manejarEnvioFormulario(this);
-    });
+//         // Llamar a la función de manejo de envío del formulario
+//         manejarEnvioFormulario(this);
+//     });
 
-    // Manejar el evento click del botón "Sign Up"
-    const signUpButton = document.querySelector('.sign-up');
-    signUpButton.addEventListener('click', redirigirRegistro);
-});
+//     // Manejar el evento click del botón "Sign Up"
+//     const signUpButton = document.querySelector('.sign-up');
+//     signUpButton.addEventListener('click', redirigirRegistro);
+// });
 
 
 function goHome(){
