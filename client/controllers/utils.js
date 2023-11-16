@@ -24,7 +24,7 @@ function readMyList() {
 
 function readMyWatching() {
     let Watching = JSON.parse(localStorage.getItem('Watching'));
-    if (Watching === undefined) {
+    if (Watching === null) {
         Watching = [];
     }
     return Watching;
