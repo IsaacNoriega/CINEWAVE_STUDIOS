@@ -2,7 +2,7 @@
 
 // Implementa la clase User
 class User {
-    constructor(nombre, apellidos, email, password, fecha, sexo, imagen) {
+    constructor(nombre, apellidos, email, password, fecha, sexo, imagen,profiles) {
         this.uid = User.generateUid(10);
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -10,9 +10,8 @@ class User {
         this.password = password;
         this.fecha = fecha;
         this.sexo = sexo;
-        if (imagen == undefined) {
-            this.imagen = User.generateImgUrl(this.uid, this.sexo);
-        }
+        this.imagen = imagen;
+        this.profiles = profiles || [];
     }
 
     get uid() {
@@ -79,7 +78,8 @@ class User {
         let fecha = user.fecha != undefined ? user.fecha : user._fecha;
         let sexo = user.sexo != undefined ? user.sexo : user._sexo;
         let imagen = user.imagen != undefined ? user.imagen : user._imagen;
-        return new User(nombre, apellidos, email, password, fecha, sexo, imagen);
+        let profiles = user.profiles != undefined ? user.profiles : user._profiles;
+        return new User(nombre, apellidos, email, password, fecha, sexo, imagen,profiles);
     }
     
     static generateUid(len) {
