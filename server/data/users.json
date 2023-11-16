@@ -5,23 +5,19 @@
     "_password":"ImpossibleToHack",
     "_fecha":"1980-10-10",
     "_sexo":"H",
-    "_imagen":"https://randomuser.me/api/portraits/men/71.jpg"
-},
-{   "_uid":"4512832687",
-    "_nombre":"Diego",
-    "_apellidos":"Lopez",
-    "_email":"diego.lopez@iteso.mx",
-    "_password":"BestPassword",
-    "_fecha":"1993-02-06",
-    "_sexo":"H",
-    "_imagen":"https://randomuser.me/api/portraits/men/87.jpg"
-},
-{   "_uid":"6192551742",
-    "_nombre":"Diana",
-    "_apellidos":"Gomez",
-    "_email":"diana.gomez@iteso.mx",
-    "_password":"pass1234",
-    "_fecha":"1991-12-08",
-    "_sexo":"M",
-    "_imagen":"https://randomuser.me/api/portraits/women/42.jpg"
+    "_imagen":"https://randomuser.me/api/portraits/men/71.jpg",
+    "profiles":{
+        "user1":{
+            "_imagen":"https://randomuser.me/api/portraits/men/71.jpg"
+        },
+        "user2":{
+            "_imagen":"https://randomuser.me/api/portraits/men/87.jpg"
+        },
+        "user3":{
+            "_imagen":"https://randomuser.me/api/portraits/men/87.jpg"
+        },
+        "ScaryBunny":{
+            "_imagen":"https://pbs.twimg.com/profile_images/3420483513/818e56bf687d3fb90f73adbf30b8de4b_400x400.jpeg"
+        }
+    }
 }]
