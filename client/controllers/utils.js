@@ -117,4 +117,39 @@ function saveProgressMedia(media, progress) {
 
 
 
+
+
+
+
+
+
+
+
+function initMyNewProfile(username,img) {
+    localStorage.setItem("profile",JSON.stringify(
+        {
+            id:username,
+            img:img,
+        }
+    ))
+    console.log("nueva sesión creada para "+ username)
+}
+
+
+function initProfile(){
+    const user=JSON.parse(localStorage.getItem("profile"))
+    const userProfileDiv=document.querySelector("#userProfileLink");
+
+    console.log(user)
+
+    userProfileDiv.innerHTML=`
+    <img class="img-user" src="${user.img}">
+        ${user.id}
+    `
+
+}
+
+
+
+initProfile();
 initMyList();

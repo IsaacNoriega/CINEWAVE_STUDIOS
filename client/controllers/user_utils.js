@@ -1,5 +1,15 @@
 const userContainer = document.getElementById('myProfiles');
 
+
+const logProfile = (name,img) => {
+    console.log(name);
+    console.log(img)
+    initMyNewProfile(name,img)
+};
+
+
+
+
 async function userToHtml(user) {
     const profileKeys = Object.keys(user.profiles || {});
 
@@ -7,7 +17,7 @@ async function userToHtml(user) {
         const profile = user.profiles[profileKey];
         return `
             <div class="profile-n">
-                <button onclick="goHome()">
+                <button onclick="logProfile('${profileKey}' , '${profile._imagen}')">
                     <img src="${profile._imagen}" alt="">
                     <p>${profileKey}</p>
                 </button>
@@ -17,6 +27,7 @@ async function userToHtml(user) {
 
     return profileHtmlArray.join('');
 }
+
 
 function renderUsers() {
     usersToHtml().then((userHtmlArray) => {

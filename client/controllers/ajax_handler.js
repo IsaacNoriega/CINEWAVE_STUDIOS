@@ -1,6 +1,6 @@
 "use strict";
 
-async function loadMovies (url) {
+async function loadMedias (url) {
     let response = await fetch(url);
     if (response.status != 200) return [];
     return await response.json();

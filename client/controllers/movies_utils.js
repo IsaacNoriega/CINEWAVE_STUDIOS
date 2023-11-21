@@ -70,7 +70,7 @@ async function mediaWatchingListToHtml(movie, progress) {
 
 
 async function moviesToHtml() {
-    const movies = await loadMovies(moviesURL);
+    const movies = await loadMedias(moviesURL);
 
     const movieHtmlArray = movies.map(async (movie) => {
         const html = await movieToHtml(movie);
@@ -82,7 +82,7 @@ async function moviesToHtml() {
 
 
 async function moviesByGenreToHtml(genre) {
-    const movies = await loadMovies(moviesURL);
+    const movies = await loadMedias(moviesURL);
     const lowerCaseGenre = genre.toLowerCase();
 
     const movieHtmlArray = [];
@@ -98,6 +98,22 @@ async function moviesByGenreToHtml(genre) {
     return Promise.all(movieHtmlArray);
 }
 
+async function mediaByTypeToHtml(type) {
+    const medias = await loadMedias(moviesURL);
+    // const lowerCaseGenre = genre.toLowerCase();
+
+    // const movieHtmlArray = [];
+
+    // for (const movie of movies) {
+    //     // Check if the lowercase genre is included in the lowercase movie genres
+    //     if (movie.genre.map(g => g.toLowerCase()).includes(lowerCaseGenre)) {
+    //         const html = await movieToHtml(movie);
+    //         movieHtmlArray.push(html);
+    //     }
+    // }
+
+    // return Promise.all(movieHtmlArray);
+}
 
 
 
@@ -116,6 +132,11 @@ function renderByGenreMedia(genre) {
     });
 }
 
+function renderByType(type){
+
+}
+
+
 
 
 async function mediasToHtml() {
@@ -133,7 +154,14 @@ async function mediasToHtml() {
 function renderMyList() {
     let medias=readMyList()._mediaProxies;
     mediasToHtml().then((movieHtmlArray) => {
-        myListContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
+        if(movieHtmlArray.length>0){
+            myListContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
+        }else{
+            myListContainer.innerHTML = `<div class="row">Aún no añades nada a tu lista</div>`;
+        }
+        
+
+   
     });
 }
 
@@ -150,13 +178,14 @@ function watchingToHtml() {
 
 function renderContinueWatichingList(){
     watchingToHtml().then((movieHtmlArray) => {
-
-        continueWatichingListContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
+        if(movieHtmlArray.length>0){
+            continueWatichingListContainer.innerHTML = `<div class="row">\n${movieHtmlArray.join("\n")}\n</div>`;
+        }else{
+            continueWatichingListContainer.innerHTML = `<div class="row">Ve alguna pelicula o serie</div>`;
+        }
+        
     });
 }
-
-
-
 
 
 function preloadStream() {

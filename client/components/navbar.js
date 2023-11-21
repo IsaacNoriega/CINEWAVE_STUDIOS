@@ -48,7 +48,7 @@ function MiComponente(elementoPadre) {
   this.elementoHijo.innerHTML = `
       <ul class="nav-ul">
           <li class="user-li">
-              <a href="profiles.html">
+              <a id="userProfileLink" href="profiles.html">
                   <img class="img-user" src="${userImg}">
                   ${username}
               </a>
@@ -65,7 +65,7 @@ function MiComponente(elementoPadre) {
               <a href="#">Movies</a>
           </li>
           <li>
-              <a href="#">My List</a>
+              <a href="#myList">My List</a>
           </li>
       </ul>
       <div class="search-dropdown hidden">
