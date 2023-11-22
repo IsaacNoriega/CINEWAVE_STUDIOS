@@ -125,14 +125,21 @@ function saveProgressMedia(media, progress) {
 
 
 
-function initMyNewProfile(username,img) {
+function initMyNewProfile(username,img,profileInfo) {
     localStorage.setItem("profile",JSON.stringify(
         {
             id:username,
             img:img,
+            info:JSON.parse(profileInfo)
         }
     ))
-    console.log("nueva sesión creada para "+ username)
+    let myNewList={
+        "_mediaProxies":JSON.parse(localStorage.getItem("profile")).info._myList
+    }
+    writeMyList(myNewList)
+    console.log(JSON.parse(profileInfo))
+    console.log(myNewList)
+    
 }
 
 

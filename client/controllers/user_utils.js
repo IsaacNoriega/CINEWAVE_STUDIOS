@@ -4,7 +4,9 @@ const userContainer = document.getElementById('myProfiles');
 const logProfile = (name,img) => {
     console.log(name);
     console.log(img)
-    initMyNewProfile(name,img)
+    //console.log(JSON.parse(sessionStorage.getItem("profileInfo")))
+    initMyNewProfile(name,img,sessionStorage.getItem("profileInfo"))
+    //window.open("/client/views/home.html","_self")
 };
 
 
@@ -15,6 +17,7 @@ async function userToHtml(user) {
 
     const profileHtmlArray = profileKeys.map((profileKey) => {
         const profile = user.profiles[profileKey];
+        sessionStorage.setItem("profileInfo",JSON.stringify(user.profiles[profileKey]))
         return `
             <div class="profile-n">
                 <button onclick="logProfile('${profileKey}' , '${profile._imagen}')">
@@ -45,6 +48,13 @@ async function usersToHtml() {
     return Promise.all(userHtmlArray);
 }
 
+async function loadUserInfo() {
+    const users = await loadUser(usersURL);
+    console.log(users)
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
     renderUsers();
+    loadUserInfo();
 });

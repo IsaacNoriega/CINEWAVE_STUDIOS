@@ -2,7 +2,7 @@
 
 // Implementa la clase User
 class User {
-    constructor(nombre, apellidos, email, password, fecha, sexo, imagen,profiles) {
+    constructor(nombre, apellidos, email, password, fecha, sexo, imagen, profiles) {
         this.uid = User.generateUid(10);
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -79,6 +79,7 @@ class User {
         let sexo = user.sexo != undefined ? user.sexo : user._sexo;
         let imagen = user.imagen != undefined ? user.imagen : user._imagen;
         let profiles = user.profiles != undefined ? user.profiles : user._profiles;
+        console.log(user)
         return new User(nombre, apellidos, email, password, fecha, sexo, imagen,profiles);
     }
     
