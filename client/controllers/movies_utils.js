@@ -6,10 +6,11 @@ const continueWatichingListContainer= document.getElementById('continue-watching
 
 async function movieToHtml(movie) {
     let newMovie=JSON.stringify(movie).replace(/\"/g,"&quot;")
+    console.log("esto es lo que se tiene: ",movie.imageURL);
     return `
     <div class="movie-card">
         <div onclick="mostrarDetallePelicula(${newMovie})" class="img-card">
-            <img class="card-img-top" src="${movie.img}" alt="${movie.title}">
+            <img class="card-img-top" src="${movie.imageURL}" alt="${movie.title}">
         </div>
         <div class="card-body">
             <h4 class="card-title">${movie.title}</h4>
@@ -28,7 +29,7 @@ async function mediaMyListToHtml(movie) {
     return `
     <div class="movie-card">
         <div onclick="mostrarDetallePelicula(${newMovie})" class="img-card">
-            <img class="card-img-top" src="${movie.img}" alt="${movie.title}">
+            <img class="card-img-top" src="${movie.imageURL}" alt="${movie.title}">
         </div>
         <div class="card-body">
             <h4 class="card-title">${movie.title}</h4>
@@ -52,7 +53,7 @@ async function mediaWatchingListToHtml(movie, progress) {
     return `
         <div class="movie-card">
             <div onclick="mostrarDetallePelicula(${newMovie})" class="img-card">
-                <img class="card-img-top" src="${movie.img}" alt="${movie.title}">
+                <img class="card-img-top" src="${movie.imageURL}" alt="${movie.title}">
 
             </div>
             <div class="card-body">

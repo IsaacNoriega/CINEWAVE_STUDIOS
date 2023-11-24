@@ -1,10 +1,10 @@
 "use strict";
 
 //const apiURL = 'http://localhost:3000/api/';
-const apiURL='mongodb+srv://IsaacNoriega:IsaacNoriega@cluster0.ualxzre.mongodb.net/?retryWrites=true&w=majority/'
+const apiURL='http://localhost:3000/api/'
 const moviesURL = apiURL + 'movies/';
 const seriesURL = apiURL + 'series/';
-const usersURL = apiURL + '';
+const usersURL = apiURL + 'user/';
 
 
 
@@ -127,19 +127,40 @@ function saveProgressMedia(media, progress) {
 
 
 function initMyNewProfile(username,img,profileInfo) {
+    console.log(
+        {
+            id:username,
+            img:img,
+            info:(profileInfo)
+        }
+    )
     localStorage.setItem("profile",JSON.stringify(
         {
             id:username,
             img:img,
-            info:JSON.parse(profileInfo)
+            info:(profileInfo)
         }
     ))
+
     let myNewList={
         "_mediaProxies":JSON.parse(localStorage.getItem("profile")).info._myList
     }
-    writeMyList(myNewList)
-    console.log(JSON.parse(profileInfo))
     console.log(myNewList)
+    writeMyList(myNewList)
+
+    // localStorage.setItem("profile",JSON.stringify(
+    //     {
+    //         id:username,
+    //         img:img,
+    //         info:(profileInfo)
+    //     }
+    // ))
+    // let myNewList={
+    //     "_mediaProxies":JSON.parse(localStorage.getItem("profile")).info._myList
+    // }
+    // writeMyList(myNewList)
+    // console.log(JSON.parse(profileInfo))
+    // console.log(myNewList)
     
 }
 

@@ -29,30 +29,76 @@ app.route('/api/users')
   .post((req,res)=>{
     let user = req.body;
     dataHandler.createUser(user);
-    res.type('tet/plain');
+    res.type('text/plain');
     res.send('User ${user.nombre} was created');
   });
 
-app.route('/api/users/:email')
-  .get((req,res)=>{
-      let email = req.params.email;
-      res.json(dataHandler.getUserByEmail(email));
-  })
-  .put((req,res)=>{
-    let email = req.params.email;
-    let user = req.body;
 
-    dataHandler.updateUser(email,user);
-    res.type('text/plain');
-    res.send('User ${user.nombre} was updated');
-  })
-  .delete((req,res)=>{
-    let email = req.params.email;
-    let user = req.body;
 
-    res.type('text/plain');
-    res.send('User ${user.nombre} was updated');
-  })
+
+
+app.get('/api/users/:email', async (req, res) => {
+  try {
+    let email = req.params.email;
+
+    // Buscar usuario por correo electrónico en la base de datos
+    const user = await UserModel.findOne({ _email: email });
+
+    if (!user) {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+      return;
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error al obtener información del usuario' });
+  }
+});
+
+app.put('/api/users/:email', async (req, res) => {
+  try {
+    let email = req.params.email;
+    let userUpdates = req.body;
+
+    // Buscar y actualizar usuario por correo electrónico en la base de datos
+    const user = await UserModel.findOneAndUpdate({ _email: email }, userUpdates, { new: true });
+
+    if (!user) {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+      return;
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error al actualizar el usuario' });
+  }
+});
+
+app.delete('/api/users/:email', async (req, res) => {
+  try {
+    let email = req.params.email;
+
+    // Buscar y eliminar usuario por correo electrónico en la base de datos
+    const user = await UserModel.findOneAndDelete({ _email: email });
+
+    if (!user) {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+      return;
+    }
+
+    res.status(204).send();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error al eliminar el usuario' });
+  }
+});
+
+
+
+
+
 
 
 //Movies
