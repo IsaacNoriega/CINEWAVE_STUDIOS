@@ -1,6 +1,6 @@
 "use strict";
 
-const fs = require('fs')
+
 const User = require('./users');
 const Movie = require('./movies');
 const Serie = require('./series');
@@ -8,15 +8,15 @@ const { Session } = require('inspector');
 
 // Leer el contenido de users.json
 // Parsear y convertir a User el contenido de users.json
-let usersContent = fs.readFileSync('./data/users.json');
+// let usersContent = fs.readFileSync('./data/users.json');
 let users = JSON.parse(usersContent).map(User.generateUser);
 
 // Leer el contenido de movies.json
-let moviesContent = fs.readFileSync('./data/movies.json');
+// let moviesContent = fs.readFileSync('./data/movies.json');
 let movies = JSON.parse(moviesContent).map(Movie.generateMovie);
 
 // Leer el contenido de movies.json
-let seriesContent = fs.readFileSync('./data/series.json');
+// let seriesContent = fs.readFileSync('./data/series.json');
 let series = JSON.parse(seriesContent).map(Serie.generateSerie);
 
 
@@ -32,7 +32,7 @@ function getUserByEmail(email) {
 function createUser(user) {
     if (isUserValid(user)) {
         users.push(User.generateUser(user));
-        fs.writeFileSync('./data/users.json',JSON.stringify(users))
+        // fs.writeFileSync('./data/users.json',JSON.stringify(users))
     }
 }
 

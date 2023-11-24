@@ -1,13 +1,16 @@
 "use strict";
-
 const express = require('express');
 const cors = require('cors'); // Add this line to import the cors middleware
 const dataHandler = require('./controllers/data_handler');
 
+
+
 const app = express();
 const port = 3000;
 
-app.use(cors()); // Enable CORS for all routes
+app.use(cors({
+  origin:['http://127.0.0.1:5500']
+})); // Enable CORS for all routes
 app.use(express.json());
 
 app.get('/',

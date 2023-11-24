@@ -2,7 +2,6 @@
 
 const express = require('express');
 const dataHandler = require('./controllers/data_handler');
-
 const app = express();
 const port = 3000;
 

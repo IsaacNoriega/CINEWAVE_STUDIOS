@@ -1,9 +1,10 @@
 "use strict";
 
-const apiURL = 'http://localhost:3000/api/';
+//const apiURL = 'http://localhost:3000/api/';
+const apiURL='mongodb+srv://IsaacNoriega:IsaacNoriega@cluster0.ualxzre.mongodb.net/?retryWrites=true&w=majority/'
 const moviesURL = apiURL + 'movies/';
 const seriesURL = apiURL + 'series/';
-const usersURL = apiURL + 'users/';
+const usersURL = apiURL + '';
 
 
 
