@@ -1,6 +1,55 @@
 const userContainer = document.getElementById('myProfiles');
 
 
+
+
+
+
+async function logIn(e) {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+        const response = await fetch(loginURL,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+            const user = await response.json();
+            sessionStorage.setItem("user", JSON.stringify(user));
+            console.log("Login successful:", user);
+            window.location.href = "/client/views/profiles.html";
+        } else if (response.status === 401) {
+            alert("Credenciales incorrectas.");
+        } else {
+            alert("Error al iniciar sesión.");
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("Error de conexión con el servidor.");
+    }
+}
+
+function logOut(){
+    sessionStorage.removeItem('myList');
+    sessionStorage.removeItem('user');
+    
+    localStorage.removeItem('profile');
+    localStorage.removeItem('Watching');
+    sessionStorage.removeItem('profileInfo');
+    window.location.href = "/client/views/";
+}
+
+
+
+
+
+
 const logProfile = (name,img) => {
     console.log(name);
     console.log(img)
@@ -78,8 +127,31 @@ function createProfile(el) {
 
 
 
+function onUser() {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const titleLower = document.title.toLowerCase();
+
+    console.log(titleLower);
+    if (titleLower.includes("login")) {
+        console.log("You are on the login page");
+        if(user){
+            console.log("hay un usuario con sesión activa ", user)
+            window.open("/client/views/profiles.html","_self")
+        }
+    }else{
+        if(!user){
+            console.log("no hay un usuario con sesión activa ", user)
+            window.open("/client/views/","_self")
+        }
+    }
+}
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     renderUsers();
     loadUserInfo();
+    onUser();
 });

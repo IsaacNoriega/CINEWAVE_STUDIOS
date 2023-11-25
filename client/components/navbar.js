@@ -1,8 +1,8 @@
 function MiComponente(elementoPadre) {
   this.elementoPadre = elementoPadre;
   this.elementoHijo = document.createElement('div');
-  const username = "usuario 1";
-  const userImg = "../assets/backgorund.jpg";
+  const username = "";
+  const userImg = "";
   const searchMovies = {
       "kill Bill": "https://th.bing.com/th/id/OIP.QRoYUipqebs6BA7urEIoUgHaLH?pid=ImgDet&rs=1",
       "Coraline": "https://th.bing.com/th/id/OIP.X_zYmfuYIhLPz3nHkr9wSwHaJa?pid=ImgDet&rs=1",

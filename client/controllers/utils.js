@@ -5,6 +5,7 @@ const apiURL='http://localhost:3000/api/'
 const moviesURL = apiURL + 'movies/';
 const seriesURL = apiURL + 'series/';
 const usersURL = apiURL + 'user/';
+const loginURL = apiURL + 'login/';
 
 
 
@@ -175,7 +176,6 @@ function initProfile(){
     <img class="img-user" src="${user.img}">
         ${user.id}
     `
-
 }
 
 
