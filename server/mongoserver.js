@@ -22,7 +22,7 @@ db.once('open', () => {
   console.log('Conectado a MongoDB');
 });
 
-
+//**Esquema de Media**//
 const mediaSchema = new mongoose.Schema({
     title: String,
     director: String,
@@ -32,7 +32,7 @@ const mediaSchema = new mongoose.Schema({
     video: String
 });
 
-// Definir el esquema
+//**Esquema de User**//
 const userSchema = new mongoose.Schema({
     _uid: String,
     _nombre: String,
@@ -55,10 +55,7 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-
-
-
-
+//**Esquema de Pelicula**//
 const movieSchema = new mongoose.Schema({
     title: String,
     director: String,
@@ -68,8 +65,7 @@ const movieSchema = new mongoose.Schema({
     video: String
 });
 
-
-
+//**Esquema de Serie**//
 const serieSchema = new mongoose.Schema({
     title: String,
     director: String,
@@ -79,16 +75,12 @@ const serieSchema = new mongoose.Schema({
     videos: [String]
 });
 
-
-
-
-// Definir el modelo
+//**Definicion de Modelos**//
 const UserModel = mongoose.model("User", userSchema);
 const MovieModel = mongoose.model("Movie", movieSchema);
 const SerieModel = mongoose.model("Serie", serieSchema);
 
-// Endpoint POST /user
-
+//**GET all Users**//
 app.get('/api/user', async (req, res) => {
     try {
       // Buscar todos los usuarios en la base de datos
@@ -100,61 +92,62 @@ app.get('/api/user', async (req, res) => {
     }
 });
 
+//**POSTEAR un perfil**//
 app.post('/api/users/:email/profiles', async (req, res) => {
-    try {
-      let email = req.params.email;
-      let newProfile = req.body;
-  
-      // Verificar si se proporcionó un profileId en el cuerpo de la solicitud
-      if (!newProfile || !newProfile.profileId) {
-        res.status(400).json({ error: 'El cuerpo de la solicitud debe contener un profileId' });
-        return;
-      }
-  
-      // Buscar usuario por correo electrónico en la base de datos
-      const user = await UserModel.findOne({ _email: email });
-  
-      if (!user) {
-        res.status(404).json({ error: 'Usuario no encontrado' });
-        return;
-      }
-  
-      // Añadir el nuevo perfil al mapa de perfiles del usuario usando el profileId proporcionado
-      user.profiles.set(newProfile.profileId, newProfile);
-  
-      // Guardar los cambios en la base de datos
-      await user.save();
-  
-      res.status(201).json(newProfile);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: 'Error al agregar un nuevo perfil al usuario' });
+  try {
+    let email = req.params.email;
+    let newProfile = req.body;
+
+    // Buscar usuario por correo electrónico en la base de datos
+    const user = await UserModel.findOne({ _email: email });
+
+    // Verificar si se proporcionó un profileId en el cuerpo de la solicitud
+    if (!newProfile || !newProfile.profileId) {
+      res.status(400).json({ error: 'El cuerpo de la solicitud debe contener un profileId' });
+      return;
     }
-  });
-  
 
-
-
-
-  app.get('/api/users/:email', async (req, res) => {
-    try {
-      let email = req.params.email;
-  
-      // Buscar usuario por correo electrónico en la base de datos
-      const user = await UserModel.findOne({ _email: email });
-  
-      if (!user) {
-        res.status(404).json({ error: 'Usuario no encontrado' });
-        return;
-      }
-  
-      res.json(user);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: 'Error al obtener información del usuario' });
+    // Verificar si ya hay 4 perfiles
+    const profileKeys = user.profiles.size;
+    if (profileKeys>= 4) {
+      res.status(400).json({ error: 'No se pueden agregar más de 4 perfiles' });
+      return;
     }
-  });
+
+    // Añadir el nuevo perfil al mapa de perfiles del usuario usando el profileId proporcionado
+    user.profiles.set(newProfile.profileId, newProfile);
+
+    // Guardar los cambios en la base de datos
+    await user.save();
+
+    res.status(201).json(newProfile);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error al agregar un nuevo perfil al usuario' });
+  }
+});
+
+//**GET del usuario por email**//
+app.get('/api/users/:email', async (req, res) => {
+  try {
+    let email = req.params.email;
   
+    // Buscar usuario por correo electrónico en la base de datos
+    const user = await UserModel.findOne({ _email: email });
+  
+    if (!user) {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+      return;
+    }
+  
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error al obtener información del usuario' });
+  }
+});
+  
+  //**PUT para actualizar datos del usuario por email**//
   app.put('/api/users/:email', async (req, res) => {
     try {
       let email = req.params.email;
@@ -175,6 +168,7 @@ app.post('/api/users/:email/profiles', async (req, res) => {
     }
   });
   
+  //**Borrar usuario por email**//
   app.delete('/api/users/:email', async (req, res) => {
     try {
       let email = req.params.email;
@@ -194,9 +188,7 @@ app.post('/api/users/:email/profiles', async (req, res) => {
     }
   });
   
-
-
-
+  //**GET de perfiles de un usuario por email**//
   app.get('/api/users/:email/profiles', async (req, res) => {
     try {
       let email = req.params.email;
@@ -218,55 +210,66 @@ app.post('/api/users/:email/profiles', async (req, res) => {
 
 
 
-  app.post('/api/users/:email/profiles', async (req, res) => {
-    try {
-      let email = req.params.email;
-      let newProfile = req.body;
+  // app.post('/api/users/:email/profiles', async (req, res) => {
+  //   try {
+  //     let email = req.params.email;
+  //     let newProfile = req.body;
   
-      // Buscar usuario por correo electrónico en la base de datos
-      const user = await UserModel.findOne({ _email: email });
+  //     // Buscar usuario por correo electrónico en la base de datos
+  //     const user = await UserModel.findOne({ _email: email });
   
-      if (!user) {
-        res.status(404).json({ error: 'Usuario no encontrado' });
-        return;
-      }
+  //     if (!user) {
+  //       res.status(404).json({ error: 'Usuario no encontrado' });
+  //       return;
+  //     }
   
-      // Generar un nuevo identificador para el perfil
-      const profileId = `profile_${Date.now()}`;
+  //     // Generar un nuevo identificador para el perfil
+  //     const profileId = `profile_${Date.now()}`;
       
-      // Añadir el nuevo perfil al mapa de perfiles del usuario
-      user.profiles.set(profileId, newProfile);
+  //     // Añadir el nuevo perfil al mapa de perfiles del usuario
+  //     user.profiles.set(profileId, newProfile);
   
-      // Guardar los cambios en la base de datos
-      await user.save();
+  //     // Guardar los cambios en la base de datos
+  //     await user.save();
   
-      res.status(201).json({
-        profileId,
-        newProfile
-      });
+  //     res.status(201).json({
+  //       profileId,
+  //       newProfile
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ error: 'Error al agregar un nuevo perfil al usuario' });
+  //   }
+  // });
+
+  //**DELETE un perfil por su nombre**//
+  app.delete('/api/users/:email/profiles/:profileId', async (req, res) => {
+    try {
+        let email = req.params.email;
+        let profileId = req.params.profileId;
+
+        // Buscar usuario por correo electrónico en la base de datos
+        const user = await UserModel.findOne({ _email: email });
+
+        if (!user) {
+            res.status(404).json({ error: 'Usuario no encontrado' });
+            return;
+        }
+
+        // Eliminar el perfil utilizando el profileId
+        user.profiles.delete(profileId);
+
+        // Guardar los cambios en la base de datos
+        await user.save();
+
+        res.status(204).send();
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: 'Error al agregar un nuevo perfil al usuario' });
+        console.log(error);
+        res.status(500).json({ error: 'Error al eliminar el perfil del usuario' });
     }
-  });
+});
   
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Movies
 
@@ -373,14 +376,24 @@ app.get('/api/movies', async (req, res) => {
 
 
 
+//inicio Sesion
+app.post('/api/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({ _email: email });
 
-
-
-
-
-
-
-
+    if (user && password === user._password) {
+      // Inicio de sesión exitoso
+      res.status(200).json({ message: 'Inicio de sesión exitoso' });
+    } else {
+      // Credenciales incorrectas
+      res.status(401).json({ error: 'Credenciales incorrectas' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error en el servidor al procesar la solicitud de inicio de sesión' });
+  }
+});
 
 
 
@@ -392,3 +405,6 @@ app.get('/api/movies', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+
+
