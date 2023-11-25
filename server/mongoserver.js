@@ -379,12 +379,14 @@ app.get('/api/movies', async (req, res) => {
 //inicio Sesion
 app.post('/api/login', async (req, res) => {
   try {
+    console.log('Solicitud de inicio de sesión recibida:', req.body);
     const { email, password } = req.body;
     const user = await UserModel.findOne({ _email: email });
 
     if (user && password === user._password) {
       // Inicio de sesión exitoso
-      res.status(200).json({ message: 'Inicio de sesión exitoso' });
+      res.status(200).json(user);
+
     } else {
       // Credenciales incorrectas
       res.status(401).json({ error: 'Credenciales incorrectas' });
